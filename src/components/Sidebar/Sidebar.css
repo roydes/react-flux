@@ -1,0 +1,15 @@
+.sidebar {
+    position: sticky;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    margin: 0 -15px;
+    height: calc(100vh - 48px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.nav-link {
+    font-size: 16px;
+}
