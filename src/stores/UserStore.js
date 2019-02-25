@@ -9,9 +9,13 @@ class UserStore extends EventEmitter {
   constructor() {
       super();
       this.users = [];
+      this.user = null;
   }
   getUsers() {
     return this.users;
+  }
+  getUser() {
+    return this.user;
   }
   onActionDispatched(action) {
     switch(action.type) {
@@ -19,6 +23,11 @@ class UserStore extends EventEmitter {
         this.users = action.value;
         console.log('Users from dispatcher have arrivied to the store', this.users)
         this.emit(userStoreEvents.usersChanged);
+        break;
+      }
+      case userActionTypes.fetch_user_completed: {
+        this.user = action.value;
+        this.emit(userStoreEvents.selectedUserChanged)
         break;
       }
     }

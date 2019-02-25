@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import UsersPage from './pages/User/UsersPage';
-import HomePage from './pages/HomePage';
-
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import UsersPage from './pages/User/UsersPage.jsx'
+import HomePage from './pages/HomePage'
 export default class AppRoutes extends Component {
   render() {
     return (
@@ -13,7 +12,7 @@ export default class AppRoutes extends Component {
         <Route path="/post" component={UsersPage}>
         </Route>
       </div>
-    );
+    )
   }
 }
 
