@@ -18,8 +18,8 @@ export default class UserDetailPage extends Component {
       UserStore.on(userStoreEvents.selectedUserChanged, ()=> {
           this.setState({user: UserStore.getUser()})
           console.log( this.state.user)
-      });
-  } 
+      }); 
+  }
   shouldComponentUpdate() {
     return this.state.isMounted;
   }

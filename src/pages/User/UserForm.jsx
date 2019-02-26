@@ -8,12 +8,15 @@ const userStoreEvents = globals.storeEvents.user;
 export default class UserForm extends Component {
   constructor(props) {
       super(props);
-      this.state = {user: {
+      this.state = {
+        user: {
           name: '',
           email: '',
           phone: '',
-          website: '',
-      }};
+          website: ''
+        },
+        isUserCreated: false
+    };
       this.id = props.match.params.id;
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,16 +27,20 @@ export default class UserForm extends Component {
           UserStore.on(userStoreEvents.selectedUserChanged, ()=> {
               this.setState({user: UserStore.getUser()})
           });
-
-
+      } else {
+          UserStore.on(userStoreEvents.userCreated, ()=> {
+            console.log('User created')
+              this.setState({isUserCreated: true});
+          });
       }
   }
 
   render() {
-      console.log(this.state.user)
     const submitText = this.id ? 'Edit' : 'Create';  
+    const onSubmitSuccess = this.isUserCreated ? (<div className="alert alert-success my-5" role="alert"> The user has been created!</div>) : (<div></div>) 
     return (
       <form className="user-form container" onSubmit={this.handleSubmit}>
+      {onSubmitSuccess}  
       <div className="row">
         <div className="form-group col-xs-12 col-md-6">
                 <label>Name</label>
@@ -68,9 +75,10 @@ export default class UserForm extends Component {
   handleSubmit(event) {
       event.preventDefault();
       if (this.id) {
-        console.log('Saving ....', this.state.user)
+        console.log(' Updating....', this.state.user)
       } else {
-        console.log('Updating ....', this.state.user)
+        console.log('Saving ....', this.state.user)
+        UserActions.createUser(this.state.user);
       }
   }
 }

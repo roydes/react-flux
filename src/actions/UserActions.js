@@ -33,5 +33,26 @@ export function fetchUser(id) {
             value: user
         })
     });
+}
 
+export function createUser(user) {
+    dispatcher.dispatch({
+        type: userActions.create_user,
+        value: user
+    });
+    fetch(globals.apiUrl + globals.endpoints.users, {
+        method: 'post',
+        body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .then((user) => {
+        console.log('Request succeeded with JSON response', user);
+        dispatcher.dispatch({
+            type: userActions.create_user_completed,
+            value: user
+        });
+      })
+      .catch((error) =>{
+        console.log('Request failed', error);
+      });
 }

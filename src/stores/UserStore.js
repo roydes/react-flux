@@ -21,13 +21,19 @@ class UserStore extends EventEmitter {
     switch(action.type) {
       case userActionTypes.fetch_users_completed: {
         this.users = action.value;
-        console.log('Users from dispatcher have arrivied to the store', this.users)
+        console.log('Users from dispatcher have arrived to the store', this.users)
         this.emit(userStoreEvents.usersChanged);
         break;
       }
       case userActionTypes.fetch_user_completed: {
         this.user = action.value;
         this.emit(userStoreEvents.selectedUserChanged)
+        break;
+      }
+      case userActionTypes.create_user_completed: {
+        this.user = action.value;
+        console.log('User from dispatcher has arrived to the store', this.user)
+        this.emit(userActionTypes.userCreated);
         break;
       }
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './Sidebar.css';
+
 export default class Sidebar extends Component {
   constructor(props) {
       super(props);
@@ -11,13 +13,13 @@ export default class Sidebar extends Component {
       <div className="sidebar bg-dark">
         <ul className="nav flex-column">
           <li className="nav-item">
-           <a className="nav-link text-light" href="#">Users</a>
+           <Link className="nav-link text-light" to="/users">Users</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-light" href="#">Post</a>
+            <Link className="nav-link text-light" to="">Posts</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-light" href="#">Catalogs</a>
+            <Link className="nav-link text-light" to="">Catalogs</Link>
           </li>
         </ul>
       </div>
