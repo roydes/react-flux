@@ -6,6 +6,8 @@ import AppRoutes from './AppRoutes';
 import LayoutStore from './stores/LayoutStore'
 import globals from './AppGlobals.js'
 import * as LayoutActions from './actions/LayoutActions'
+import { Link } from 'react-router-dom'
+
 const layoutEventsTypes = globals.storeEvents.layout;
 
 class App extends Component {
