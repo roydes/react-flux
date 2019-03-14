@@ -4,6 +4,9 @@ const globals = {
     users: 'users'
     },
     actionTypes: {
+        layout: {
+            change_navbar_visibility: 'CHANGE_NAVBAR_VISIBILITY'
+        },
         user: {
             fetch_users: 'FETCH_USERS',
             fetch_users_completed: 'FETCH_USERS_COMPLETED',
@@ -14,6 +17,9 @@ const globals = {
         }
     },
     storeEvents: {
+        layout: {
+            navbarVisisbilityChanged: 'NAVBAR_VISIBILITY_CHANGED'
+        },
         user: {
             usersChanged: 'USERS_CHANGED',
             selectedUserChanged: 'USERS_CHANGED',

@@ -1,28 +1,48 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import './Sidebar.css';
+import React from 'react'
 
-export default class Sidebar extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {opened: props.opened};
-
+export default function Sidebar({ width = 250, top=50, transitionDuration = 250, opened = true, content}) {
+   // Hide sidenav by horizontaly transalte it to -width px
+  const closedSidenavStyles = {
+    width: width,
+    top: top  + 'px',
+    transform: 'translate(-' + width + 'px)',
+    transitionDuration: transitionDuration + 'ms',
   }
-  render() {
-    return (
-      <div className="sidebar bg-dark">
-        <ul className="nav flex-column">
-          <li className="nav-item">
-           <Link className="nav-link text-light" to="/users">Users</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-light" to="">Posts</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-light" to="">Catalogs</Link>
-          </li>
-        </ul>
+  // Horizontaly transalte sidenav to 0px
+  const openedSidenavStyle = {
+    transform: 'translate(0px)', 
+  };
+
+  const closedContainerStyles = {
+    width: '0px',
+    minWidth: '0px',
+  }
+  const openedContainerStyle = {
+    width: width,
+    minWidth: width,
+    transform: 'scaleX(1)',
+    transitionDuration: transitionDuration + 'ms',
+  }
+  //-webkit-transition: width 2s; /* Safari */
+  //transition: width 2s;
+
+  let currentSidenavStyle = Object.assign({}, closedSidenavStyles);
+  let currentContainerStyle = Object.assign({}, closedContainerStyles);
+  if (opened) {
+    currentSidenavStyle = Object.assign({}, currentSidenavStyle, openedSidenavStyle);
+    currentContainerStyle = Object.assign({}, currentContainerStyle, openedContainerStyle);
+  }
+  
+  return (
+    <div className="sidebar-container d-none d-md-block d-xs-none position-relative" style={{...currentContainerStyle}}>
+      <div  style={{...currentSidenavStyle}} className="sidebar bg-dark">
+        {content}
       </div>
-    )
-  }
+    </div>
+  )
 }
+/**
+ * 
+ *       <div className="sidebar bg-dark">
+ */

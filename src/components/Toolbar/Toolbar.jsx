@@ -3,7 +3,7 @@ import Logo from '../Logo/Logo.jsx'
 import { Link } from 'react-router-dom'
 export default function Toolbar() {
   return (
-         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
         <Link className="navbar-brand" to="/">
           <Logo></Logo>
         </Link>
@@ -16,7 +16,7 @@ export default function Toolbar() {
               <Link className="nav-link" to="/users">Users</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">Post</Link>
+              <Link className="nav-link" to="/posts">Post</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="#">Catalogs</Link>
