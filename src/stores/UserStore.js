@@ -33,7 +33,7 @@ class UserStore extends EventEmitter {
       case userActionTypes.create_user_completed: {
         this.user = action.value;
         console.log('User from dispatcher has arrived to the store', this.user)
-        this.emit(userActionTypes.userCreated);
+        this.emit(userStoreEvents.userCreated);
         break;
       }
     }

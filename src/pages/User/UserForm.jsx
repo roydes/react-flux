@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 import globals from '../../AppGlobals.js';
+import './Users.css'
 
 const userStoreEvents = globals.storeEvents.user;
 
@@ -10,12 +11,13 @@ export default class UserForm extends Component {
       super(props);
       this.state = {
         user: {
+          id: '',
           name: '',
           email: '',
           phone: '',
           website: ''
         },
-        isUserCreated: false
+        isLoading: false,
     };
       this.id = props.match.params.id;
       this.handleChange = this.handleChange.bind(this);
@@ -30,17 +32,39 @@ export default class UserForm extends Component {
       } else {
           UserStore.on(userStoreEvents.userCreated, ()=> {
             console.log('User created')
-              this.setState({isUserCreated: true});
+              this.setState({isLoading: false});
           });
+      }
+  }
+
+  handleChange(event) {
+    console.log(event.target)
+    const changedUser = this.state.user
+    changedUser[event.target.id] =  event.target.value;
+    this.setState({user: changedUser});
+  }
+
+  handleSubmit(event) {
+      event.preventDefault();
+      if (this.id) {
+        console.log(' Updating....', this.state.user)
+      } else {
+        console.log('Saving ....', this.state.user)
+        this.setState({isLoading: true}, () => {
+          UserActions.createUser(this.state.user);
+          console.log(this.state)
+        })
       }
   }
 
   render() {
     const submitText = this.id ? 'Edit' : 'Create';  
-    const onSubmitSuccess = this.isUserCreated ? (<div className="alert alert-success my-5" role="alert"> The user has been created!</div>) : (<div></div>) 
+    const loading =   this.state.isLoading? (<span className="spinner spinner-border text-primary my-2" role="status"></span>): (<span className="spinner my-2"></span>)
     return (
       <form className="user-form container" onSubmit={this.handleSubmit}>
-      {onSubmitSuccess}  
+      <div className="row justify-content-center">
+        {loading}
+      </div> 
       <div className="row">
         <div className="form-group col-xs-12 col-md-6">
                 <label>Name</label>
@@ -61,24 +85,15 @@ export default class UserForm extends Component {
                 <input className="form-control" type="text" id="website" placeholder="johndoe.org" value={this.state.user.website} onChange={this.handleChange}/>
             </div> 
         </div>
-        <button className="btn btn-secondary w-50 my-5" type="submit">{submitText}</button>
+        <button className="btn btn-secondary w-50 my-5" type="submit">
+            {submitText}
+        </button>
       </form>
     )
   }
 
-  handleChange(event) {
-    console.log(event.target)
-    const changedUser = this.state.user
-    changedUser[event.target.id] =  event.target.value;
-    this.setState({user: changedUser});
+  componentWillUnmount() {
+    UserStore.removeAllListeners();
   }
-  handleSubmit(event) {
-      event.preventDefault();
-      if (this.id) {
-        console.log(' Updating....', this.state.user)
-      } else {
-        console.log('Saving ....', this.state.user)
-        UserActions.createUser(this.state.user);
-      }
-  }
+
 }
