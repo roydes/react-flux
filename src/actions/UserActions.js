@@ -46,11 +46,13 @@ export function createUser(user) {
       })
       .then(response => response.json())
       .then((user) => {
-        console.log('Request succeeded with JSON response', user);
-        dispatcher.dispatch({
-            type: userActions.create_user_completed,
-            value: user
-        });
+          setTimeout(() => {
+            console.log('Request succeeded with JSON response', user);
+            dispatcher.dispatch({
+                type: userActions.create_user_completed,
+                value: user
+            });
+          }, 3000)
       })
       .catch((error) =>{
         console.log('Request failed', error);
