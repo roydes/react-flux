@@ -14,7 +14,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {isSidenavOpened: LayoutStore.getNavbarVisivility()};
-    this.onChangeSidenavVisibility = this.onChangeSidenavVisibility.bind(this);
   }
 
   componentDidMount() {
@@ -46,16 +45,12 @@ class App extends Component {
           <div className="row w-100 flex-nowrap">
             <Sidebar opened={this.state.isSidenavOpened} content={sideNavItems}></Sidebar>
             <div className="content-area w-100 d-flex flex-column align-items-center">
-             <button className="btn btn-secondary w-25" onClick={this.onChangeSidenavVisibility}>{this.state.isSidenavOpened?'Hide':'Show'} sidebar</button>
               <AppRoutes></AppRoutes>
             </div>
           </div>
         </div>
       </div>
     );
-  }
-  onChangeSidenavVisibility(event) {
-    LayoutActions.changeSidenavVisisbility(!this.state.isSidenavOpened);
   }
 }
 

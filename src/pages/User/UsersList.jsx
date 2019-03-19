@@ -37,4 +37,7 @@ export default class UsersList extends Component {
             </div>
         );
     }
+    componentWillUnmount() {
+        userStore.removeAllListeners();
+    }
 }

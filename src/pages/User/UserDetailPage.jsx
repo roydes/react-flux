@@ -9,7 +9,7 @@ const userStoreEvents = globals.storeEvents.user;
 export default class UserDetailPage extends Component {
   constructor(props) {
       super(props);
-      this.state = {user: null, isMounted: true};
+      this.state = {user: null};
   }
   componentDidMount() {
       const userId = this.props.match.params.id; 
@@ -20,11 +20,8 @@ export default class UserDetailPage extends Component {
           console.log( this.state.user)
       }); 
   }
-  shouldComponentUpdate() {
-    return this.state.isMounted;
-  }
+
   render() {
-    
     const user = this.state.user;
     const userAttributes = user? Object.entries(user).map((entrie, index) => {
       const attribute = entrie[0];
@@ -48,7 +45,8 @@ export default class UserDetailPage extends Component {
       </div>
     )
   }
+
   componentWillUnmount() {
-    this.setState({user: this.state.user, isMounted: false})
+    UserStore.removeAllListeners();
   }
 }
