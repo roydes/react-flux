@@ -7,6 +7,7 @@ import './Users.css'
 const userStoreEvents = globals.storeEvents.user;
 
 export default class UserForm extends Component {
+
   constructor(props) {
       super(props);
       this.state = {
@@ -23,6 +24,7 @@ export default class UserForm extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   componentDidMount() {
       if(this.id) {
           UserActions.fetchUser(this.id);

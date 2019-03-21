@@ -1,0 +1,38 @@
+.hiden {
+    display: none;
+}
+.menu-label {
+    width: 100%;
+    margin: 0;
+    border-bottom: 1px solid rgba(248, 240, 240, 0.096);
+    padding: 0.75rem 0.5rem;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu-body {
+    font-size: 16px;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+}
+.arrow-up {
+    display: none
+}
+.menu-button:checked ~ .menu-label {
+    background-color: rgba(16, 19, 41, 0.794);
+}
+.menu-button:checked ~ .menu-body {
+    height: auto;
+    max-height: 600px;
+}
+.menu-button:checked + .menu-label .arrow-up {
+    display: inline-block;
+}
+.menu-button:checked + .menu-label .arrow-down {
+    display: none;
+}
+
+

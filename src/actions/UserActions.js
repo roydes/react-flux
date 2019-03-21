@@ -4,7 +4,7 @@ import globals from '../AppGlobals.js';
 const userActions = globals.actionTypes.user;
 
 export function fetchUsers() {
-    console.log('A '+userActions.fetch_users+' action have been invoke from a component and sent to the dispatcher')
+    console.log('A ' + userActions.fetch_users + ' action have been invoke from a component and sent to the dispatcher')
     dispatcher.dispatch({
         type: userActions.fetch_users,
         value: true

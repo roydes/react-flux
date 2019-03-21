@@ -24,8 +24,6 @@ export default function Sidebar({ width = 250, top=50, transitionDuration = 250,
     transform: 'scaleX(1)',
     transitionDuration: transitionDuration + 'ms',
   }
-  //-webkit-transition: width 2s; /* Safari */
-  //transition: width 2s;
 
   let currentSidenavStyle = Object.assign({}, closedSidenavStyles);
   let currentContainerStyle = Object.assign({}, closedContainerStyles);
@@ -42,7 +40,3 @@ export default function Sidebar({ width = 250, top=50, transitionDuration = 250,
     </div>
   )
 }
-/**
- * 
- *       <div className="sidebar bg-dark">
- */
