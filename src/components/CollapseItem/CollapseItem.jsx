@@ -10,17 +10,18 @@ export default function CollapseItem({id, title, content}) {
                     <i className="material-icons arrow-up">
                         keyboard_arrow_up
                     </i>
-                </div> ) : <i/> 
-  return (
-    <div className="collapse-item">
-        <input className="menu-button hiden" id={id} type="checkbox"/>
-        <label className="menu-label"  htmlFor={id}>
-            {title} 
-            {arrows}
-        </label>
-        <div className="menu-body">
-            {content}                         
+                </div> ) : <i/>; 
+    const parentMenuClass = content? 'menu-label parent-menu': 'menu-label';
+    return (
+        <div className="collapse-item">
+            <input className="menu-button hiden" id={id} type="checkbox"/>
+            <label className={parentMenuClass}  htmlFor={id}>
+                {title} 
+                {arrows}
+            </label>
+            <div className="menu-body">
+                {content}                         
+            </div>
         </div>
-    </div>
-  )
+    )
 }
