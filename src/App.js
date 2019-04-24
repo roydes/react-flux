@@ -25,19 +25,31 @@ class App extends Component {
 
   render() {
     const menuList = [
-      {title: 'Users', content: null, childs: [
-        {title: 'List of users', content:  <Link className="text-light text-left w-100" to="/users">User list</Link>, childs: []},
-        {title: 'Add user', content: <Link className="text-light text-left w-100" to="/users/create">Create user</Link>, childs: []},
-        {title: 'Users stats', content: <Link className="text-light text-left w-100" to="/users/create">User stats</Link>, childs: []}]
+      {
+        title: 'Users', 
+        content: null, 
+        childs: [
+          {title: 'List of users', content:  <Link className="text-light text-left w-100" to="/users">User list</Link>, childs: []},
+          {title: 'Add user', content: <Link className="text-light text-left w-100" to="/users/create">Create user</Link>, childs: []},
+          {title: 'Users stats', content: <Link className="text-light text-left w-100" to="/users/create">User stats</Link>, childs: []}
+        ]
       },
-      {title: 'Posts', content: null, childs: [
-        {title: 'List of Posts', content:  <Link className="text-light text-left w-100" to="/posts">Posts</Link>, childs: []},
-        {title: 'Create post', content:  <Link className="text-light text-left w-100" to="/posts">Create a post</Link>, childs: []}
-      ]},
-      {title: 'Catalogs', content: null, childs: [
-        {title: 'List of catlogs', content:  <Link className="text-light text-left w-100" to="/posts">Posts</Link>, childs: []},
-        {title: 'Create a catalog', content:  <Link className="text-light text-left w-100" to="/posts">Create a post</Link>, childs: []}
-      ]},
+      {
+        title: 'Posts', 
+        content: null, 
+        childs: [
+          {title: 'List of Posts', content:  <Link className="text-light text-left w-100" to="/posts">Posts</Link>, childs: []},
+          {title: 'Create post', content:  <Link className="text-light text-left w-100" to="/posts">Create a post</Link>, childs: []}
+        ]
+      },
+      {
+        title: 'Catalogs', 
+        content: null, 
+        childs: [
+        {title: 'List of catlogs', content:  <Link className="text-light text-left w-100" to="/posts">Catalogs</Link>, childs: []},
+        {title: 'Create a catalog', content:  <Link className="text-light text-left w-100" to="/posts">Create a catalog</Link>, childs: []}
+        ]
+      },
     ];
     return (
       <div className="App">

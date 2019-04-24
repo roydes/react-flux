@@ -18,6 +18,7 @@ export default function Sidebar({ width = 250, top=50, transitionDuration = 250,
     width: '0px',
     minWidth: '0px',
   }
+  
   const openedContainerStyle = {
     width: width,
     minWidth: width,
@@ -27,6 +28,7 @@ export default function Sidebar({ width = 250, top=50, transitionDuration = 250,
 
   let currentSidenavStyle = Object.assign({}, closedSidenavStyles);
   let currentContainerStyle = Object.assign({}, closedContainerStyles);
+
   if (opened) {
     currentSidenavStyle = Object.assign({}, currentSidenavStyle, openedSidenavStyle);
     currentContainerStyle = Object.assign({}, currentContainerStyle, openedContainerStyle);
